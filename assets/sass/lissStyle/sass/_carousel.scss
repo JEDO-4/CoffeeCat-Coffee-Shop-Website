@@ -1,0 +1,155 @@
+@import './mixins/clearfix';
+.carousel {
+    position: relative;
+    @include breakpoint(tap){
+      height: 100vh;
+    }
+    @include breakpoint(mobile){
+      height: 100vh;
+    }
+}
+.carousel.pointer-event {
+    touch-action: pan-y;
+}
+  
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    @include clearfix();
+}
+.carousel-inner::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background:#33211d5d;
+}
+.carousel-item {
+    position: relative;
+    display: none;
+    float: left;
+    width: 100%;
+    height: 100%;
+    margin-right: -100%;
+    backface-visibility: hidden;
+    //@include transition($carousel-transition);
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+  }
+  
+  .carousel-item.active,
+  .carousel-item-next,
+  .carousel-item-prev {
+    display: block;
+  }
+  
+  .carousel-item-next:not(.carousel-item-left),
+  .active.carousel-item-right {
+    transform: translateX(100%);
+  }
+  
+  .carousel-item-prev:not(.carousel-item-right),
+  .active.carousel-item-left {
+    transform: translateX(-100%);
+  }
+  .carousel-caption {
+    position: absolute;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #333;
+    text-align: center;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: 19;
+    .title02,.title01{
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+    }
+    .title01{
+      font-weight: 500;
+      font-size:2rem;
+      color: $primary;
+    }
+    .title02{
+      font-size:8rem;
+      color:#fff;
+    }
+    .title03{
+      font-size:1.6rem;
+      color: #fff;
+    }
+    @include breakpoint(tap){
+      .title02{
+        font-size: 6rem;
+      }
+    }
+    @include breakpoint(mobile){
+      .title02{
+        font-size:4rem;
+      }
+      .title01{
+        font-size: 1.3rem;
+      }
+    }
+  }
+.carousel-control-next-icon,.carousel-control-prev-icon{
+  position: absolute;
+  top: 50%;
+  transform: translate(0%,-50%);
+  font-size: 3rem;
+  font-weight:900;
+  color:$secondary;
+  cursor: pointer;
+  z-index: 19;
+  @include breakpoint(mobile){
+    display: none;
+  }
+}
+.carousel-inner i:hover{
+  color: #333;
+}
+.carousel-control-next-icon{
+  left: 15rem;
+  @include breakpoint(tap){
+    left:10rem;
+  }
+}
+.carousel-control-prev-icon{
+  right: 15rem;
+  @include breakpoint(tap){
+    right: 10rem;
+  }
+}
+.carousel-points{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  z-index: 225;
+}
+.carousel-points span{
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: $secondary;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.carousel-points span.active{
+  width: 40px;
+  border-radius: 10px;
+  transition: width .3s ease-in,border .3s ease;
+  border: 2px solid $primary;
+}

@@ -1,0 +1,21 @@
+@mixin breakpoint($screen){
+    @if $screen == desktop {
+        @media (min-width:1440px){
+          @content;
+        }
+      } @else if $screen == labtop{
+        @media (min-width:1200px) and (max-width:1399px){
+            @content;
+        }  
+      } @else if $screen == tap{
+        @media (min-width:768px) and (max-width:1199px){
+            @content;
+        }  
+      }@else if $screen == mobile{
+        @media (max-width:767px){
+            @content;
+        }  
+      }
+
+
+}

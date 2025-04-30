@@ -1,0 +1,7 @@
+@function rem($size){
+    $remValue:$size;
+    @if (type-of($size)== number){
+        $remValue: calc($size / 16) + rem;
+    }
+    @return $remValue
+}
